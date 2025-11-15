@@ -1,7 +1,7 @@
 # Base de Datos del TP Integrador - Base de Datos II - UTN FRGP
 
 Este proyecto contiene el diseño y la implementación de la base de datos utilizada en el Trabajo Práctico Integrador de la materia Base de Datos II.
-Incluye la creación del esquema, inserción de datos semilla, procedimientos almacenados y triggers.
+Incluye la creación del esquema, inserción de datos semilla, procedimientos almacenados, triggers y vistas.
 
 ## 1. Script de Creación de Base de Datos
 
@@ -107,3 +107,22 @@ EXEC sp_InsertHistorialEjercicio @alumno_rutina_dia_id = X;
 - Resultado:
 
 Se registra automáticamente en historial_ejercicio la información del día completado y sus ejercicios.
+
+
+###🔹 tr_AsignarProfesorYCrearRutina
+
+- Archivo: trigger_2.sql
+
+- Cuándo se ejecuta:
+
+Después de un INSERT en la tabla alumno.
+
+- Qué detecta:
+La creacion de un nuevo alumno.
+
+- Qué hace:
+Identifica al profesor que tiene la menor cantidad de alumnos asignados (en caso de empate, identifica al profesor mas antiguo)
+Inserta una fila en la tabla rutina_alumno, donde el alumno_id es obtenido de la tabla inserted, el profesor_id es obtenido en el paso anterior, y establece titulo, descripcion, fecha (GETDATE) y status (en 0) por defecto.
+
+- Resultado:
+Cada alummno nuevo es asignado automaticamente a un profesor (de forma equitativa segun la carga de trabajo) y se le crea una rutina inicial con datos establecidos por defecto.
