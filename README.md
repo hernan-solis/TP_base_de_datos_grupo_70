@@ -79,6 +79,25 @@ Título de la rutina
 
 - Permite mantener un historial completo del avance del alumno, útil para reportes, análisis y progresión.
 
+### 🔹 sp_ListarProfesoresPorEspOTit
+
+- Archivo: procedimiento_almacenado_2.sql
+  
+Este procedimiento se ejecuta para obtener un listado de profesores filtrado por su especialidad o por su título profesional.
+
+- Qué hace:
+
+Recibe dos parámetros opcionales: @Especialidad y @Titulo. Busca en las tablas profesor y persona los registros que coincidan con los filtros proporcionados. Si el parámetro es NULL, se ignora el filtro correspondiente.
+
+Recibe los parámetros:
+
+@Especialidad VARCHAR(30): Filtra por la especialidad exacta del profesor (por ejemplo, 'fuerza', 'hipertrofia', 'funcional').
+
+@Titulo VARCHAR(255): Filtra por una cadena de texto contenida en el título del profesor (utiliza LIKE).
+
+- Devuelve un conjunto de resultados con los datos personales (Nombre, Apellido, Email, Especialidad, Título) de los profesores que cumplen los criterios. Permite generar un informe parametrizado que facilita la búsqueda y gestión del profesor.
+
+
 ##  4. Triggers
 ###🔹 trg_alumno_rutina_dia_completado
 
