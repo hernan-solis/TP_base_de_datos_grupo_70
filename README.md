@@ -97,6 +97,20 @@ Recibe los parámetros:
 
 - Devuelve un conjunto de resultados con los datos personales (Nombre, Apellido, Email, Especialidad, Título) de los profesores que cumplen los criterios. Permite generar un informe parametrizado que facilita la búsqueda y gestión del profesor.
 
+### 🔹 sp_EliminarAlumnoInactivo
+
+- Archivo: procedimiento_almacenado_3.sql
+
+Este procedimiento se ejecuta para realizar la eliminación física de un alumno que cumpla con los criterios de inactividad por 30 dias o mas, o falta de historial de actividad.
+
+- Qué hace:
+Recibe el @AlumnoID del alumno a evaluar.
+Comprueba si el alumno tiene algún registro en la tabla historial_ejercicio
+Comprueba si el alumno ha completado alguna rutina (completado = 1) en la tabla alumno_rutina_dia durante los últimos 30 días
+Si el alumno NO tiene historial O NO ha completado rutinas en los últimos 30 días, procede a la eliminación física
+Elimina en el orden correcto (en cascada): ejercicio_asignado, alumno_rutina_dia, rutina_alumno, usuario_rol, usuario, alumno, y finalmente persona (si esta no es también un profesor).
+
+-Devuleve un mensaje indicando si la eliminación fue exitosa o si el alumno no pudo ser eliminado.
 
 ##  4. Triggers
 ###🔹 trg_alumno_rutina_dia_completado
