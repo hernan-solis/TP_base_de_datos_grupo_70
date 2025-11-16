@@ -172,3 +172,20 @@ Se utilizan las tablas profesor, persona y rutina_alumno.
 El LEFT JOIN con rutina_alumno garantiza que si un profesor no tiene datos cargados en la tabla de rutinas (es decir, no tiene alumnos asignados), seguirá apareciendo en la lista, y la función COUNT le asignará un 0.
 Cuenta el número de filas en rutina_alumno que están asociadas a cada profesor.
 Agrupa los resultados por los datos del profesor para que la función COUNT pueda calcular la suma para cada grupo individual.
+
+### 🔹 vw_UsuariosConRolesAsignados
+
+Archivo: vista_2.sql
+
+Qué hace: 
+Esta vista muestra el usuario con su respectivo rol de permiso asignado.
+
+Muestra el nombre de usuario y el rol asignado (ej. 'admin', 'profesor', 'alumno') a cada usuario simplificando la gestión de accesos.
+
+Utiliza las tablas usuario, la tabla intermedia usuario_rol y  la tabla rol.
+
+La vista conecta estas tres tablas, asegurando que solo se muestren usuarios que tienen al menos un rol asignado.
+
+Conecta el usuario_id con el rol_id a través de la tabla usuario_rol.
+
+Convierte el id del rol en su nombre (nombre_rol) para facilitar la lectura
