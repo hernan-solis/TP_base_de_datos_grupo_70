@@ -159,3 +159,16 @@ Inserta una fila en la tabla rutina_alumno, donde el alumno_id es obtenido de la
 
 - Resultado:
 Cada alummno nuevo es asignado automaticamente a un profesor (de forma equitativa segun la carga de trabajo) y se le crea una rutina inicial con datos establecidos por defecto.
+
+##  ⚙️ 5. Vistas
+### 🔹 vw_CargaAlumnosProfesor
+
+- Archivo: vista_1.sql
+
+- Qué hace:
+Esta vista cuenta cuántos alumnos tiene asignado cada profesor, utilizando la tabla rutina_alumno.
+Se utilizan las tablas profesor, persona y rutina_alumno.
+
+El LEFT JOIN con rutina_alumno garantiza que si un profesor no tiene datos cargados en la tabla de rutinas (es decir, no tiene alumnos asignados), seguirá apareciendo en la lista, y la función COUNT le asignará un 0.
+Cuenta el número de filas en rutina_alumno que están asociadas a cada profesor.
+Agrupa los resultados por los datos del profesor para que la función COUNT pueda calcular la suma para cada grupo individual.
