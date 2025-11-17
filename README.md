@@ -160,6 +160,32 @@ Inserta una fila en la tabla rutina_alumno, donde el alumno_id es obtenido de la
 - Resultado:
 Cada alummno nuevo es asignado automaticamente a un profesor (de forma equitativa segun la carga de trabajo) y se le crea una rutina inicial con datos establecidos por defecto.
 
+
+###🔹 tr_Eliminar_Alumno
+- Archivo: tr_Eliminar_Alumno.sql
+
+- Cuándo se ejecuta: 
+En lugar de un DELETE en la tabla alumno (INSTEAD OF DELETE).
+
+Qué detecta: Un intento de eliminar una o más filas de la tabla alumno.
+
+- Qué hace:
+Implementa una eliminación suave (Soft Delete) en la tabla alumno y realiza una eliminación en cascada de todos los datos asociados al alumno en las tablas de rutina.
+Soft Delete en alumno:
+Actualiza el campo active a 0 para el/los alumno(s) que se intentaban eliminar.
+
+Limpieza de ejercicio_asignado:
+Elimina todos los ejercicios asignados que estén asociados indirectamente a las rutinas de los alumnos dados de baja.
+
+Limpieza de alumno_rutina_dia:
+Elimina los días de rutina asociados a las rutinas de los alumnos.
+
+Limpieza de rutina_alumno:
+Elimina las rutinas creadas para los alumnos.
+
+- Resultado:
+- En lugar de eliminar físicamente al alumno, se desactiva (se marca como active = 0) para preservar su registro. Al mismo tiempo, se eliminan físicamente todos sus datos transaccionales relacionados con rutinas y ejercicios asignados para mantener la base de datos limpia.
+
 ##  ⚙️ 5. Vistas
 ### 🔹 vw_CargaAlumnosProfesor
 
