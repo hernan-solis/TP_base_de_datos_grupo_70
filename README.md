@@ -189,3 +189,33 @@ La vista conecta estas tres tablas, asegurando que solo se muestren usuarios que
 Conecta el usuario_id con el rol_id a través de la tabla usuario_rol.
 
 Convierte el id del rol en su nombre (nombre_rol) para facilitar la lectura
+
+### 🔹 vw_ListaProfAlu
+
+Archivo: vista_3.sql
+
+Qué hace:
+Esta vista muestra una lista detallada que relaciona cada profesor con sus alumnos activos. Devuelve información personal tanto del profesor como del alumno.
+
+Qué incluye:
+
+Datos del profesor: nombre, apellido, título, teléfono y email.
+
+Datos del alumno: nombre, apellido, edad (calculada con DATEDIFF), teléfono, email y fecha de fin de suscripción.
+
+Solo se incluyen alumnos con active = 1 (alumnos activos).
+
+Tablas utilizadas:
+
+rutina_alumno (relación principal entre profesor y alumno)
+
+profesor
+
+persona (para profesor)
+
+alumno
+
+persona (para alumno)
+
+Propósito:
+Permite obtener rápidamente un listado de profesores con sus respectivos alumnos activos, útil para reportes, paneles administrativos o asignación de seguimiento.
